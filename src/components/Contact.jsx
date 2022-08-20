@@ -94,15 +94,19 @@ const Contact = () => {
         ></textarea>
         {error.message && <p className="text-red-300">{error.message}</p>}
         <button
-          onClick={() =>
-            (error.name ||
+          onClick={(e) => {
+            if (
+              error.name ||
               error.email ||
               error.message ||
               !input.name ||
-              input.email ||
-              input.message) &&
-            alert("Please fill the form")
-          }
+              !input.email ||
+              !input.message
+            ) {
+              e.preventDefault();
+              return alert("Please fill the form");
+            }
+          }}
           className="text-white border-2 hover:bg-[#e9d045] hover:border-[#e9d045] flex items-center mx-auto my-4 px-8 py-4"
         >
           Here we go!
