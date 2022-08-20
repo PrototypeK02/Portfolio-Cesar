@@ -41,12 +41,22 @@ const Contact = () => {
     >
       <form
         method={
-          !error.name && !error.email && !error.message ? "POST" : "hidden"
+          !error.name &&
+          !error.email &&
+          !error.message &&
+          input.name &&
+          input.email &&
+          input.message
+            ? "POST"
+            : "hidden"
         }
         action={
           !error.name &&
           !error.email &&
           !error.message &&
+          input.name &&
+          input.email &&
+          input.message &&
           "https://getform.io/f/266bec77-716b-4f59-a896-c43cb98c6bdd"
         }
         className="flex flex-col max-w-[600px] w-full"
@@ -85,7 +95,12 @@ const Contact = () => {
         {error.message && <p className="text-red-300">{error.message}</p>}
         <button
           onClick={() =>
-            (error.name || error.email || error.description) &&
+            (error.name ||
+              error.email ||
+              error.message ||
+              !input.name ||
+              input.email ||
+              input.message) &&
             alert("Please fill the form")
           }
           className="text-white border-2 hover:bg-[#e9d045] hover:border-[#e9d045] flex items-center mx-auto my-4 px-8 py-4"
